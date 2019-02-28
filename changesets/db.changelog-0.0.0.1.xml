@@ -4,14 +4,85 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd"> 
-    <!--<changeSet author="authorName" id="changelog-1.0">
-        <createTable tableName="C_PRUEBA">
-            <column name="ID" type="INT">
-                <constraints nullable="true" primaryKey="false" unique="false"/>
+<!--Gender-->      
+    <changeSet author="R.ALBERTO" id="28022019-0001">
+        <createTable tableName="Gender">
+            <column name="Id" type="int">
+                <constraints nullable="true" primaryKey="true" unique="true"/>
             </column>
-            <column name="DS_NAME" type="VARCHAR(50)">
-                <constraints nullable="true" primaryKey="false" unique="false"/>
+            <column name="Description" type="VARCHAR(50)">
             </column>
         </createTable>
-    </changeSet>-->
+    </changeSet>
+<!--Artist-->      
+    <changeSet author="R.ALBERTO" id="28022019-0002">
+        <createTable tableName="Artist">
+            <column name="Id" type="int">
+                <constraints nullable="true" primaryKey="true" unique="true"/>
+            </column>
+            <column name="Name" type="VARCHAR(50)">
+            </column>
+            <column name="Nationality" type="VARCHAR(50)">
+            </column>
+            <column name="Age" type="int">
+            </column>
+        </createTable>
+    </changeSet>
+    
+<!--Album-->      
+    <changeSet author="R.ALBERTO" id="28022019-0003">
+        <createTable tableName="Album">
+            <column name="Id" type="int">
+                <constraints nullable="true" primaryKey="true" unique="true"/>
+            </column>
+            <column name="Name" type="VARCHAR(50)">
+            </column>
+            <column name="Year" type="int">
+            </column>
+            <column name="Fk_Artist" type="int">
+            </column>
+        </createTable>
+    </changeSet>
+<!--C-->
+    <changeSet author="R.ALBERTO" id="28022019-0004">
+        <addForeignKeyConstraint baseColumnNames="Fk_Artist"
+                baseTableName="Album"
+                constraintName="Fk_Artist_Album"
+                referencedColumnNames="Id"
+                referencedTableName="Artist"/>
+    </changeSet>
+    
+<!--Song-->      
+    <changeSet author="R.ALBERTO" id="28022019-0005">
+        <createTable tableName="Song">
+            <column name="Id" type="int">
+                <constraints nullable="true" primaryKey="true" unique="true"/>
+            </column>
+            <column name="Title" type="VARCHAR(50)">
+            </column>
+            <column name="Duration" type="Interval">
+            </column>
+            <column name="Fk_Album" type="int">
+            </column>
+            <column name="Fk_Gender" type="int">
+            </column>
+        </createTable>
+    </changeSet>
+
+<!--C-->
+    <changeSet author="R.ALBERTO" id="28022019-0006">
+        <addForeignKeyConstraint baseColumnNames="Fk_Album"
+                baseTableName="Song"
+                constraintName="Fk_Album_Song"
+                referencedColumnNames="Id"
+                referencedTableName="Album"/>
+    </changeSet>
+<!--C-->
+    <changeSet author="R.ALBERTO" id="28022019-0007">
+        <addForeignKeyConstraint baseColumnNames="Fk_Gender"
+                baseTableName="Song"
+                constraintName="Fk_Gender_Song"
+                referencedColumnNames="Id"
+                referencedTableName="Gender"/>
+    </changeSet>
 </databaseChangeLog> 
