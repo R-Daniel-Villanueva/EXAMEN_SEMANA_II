@@ -1,35 +1,14 @@
-# Liquibase
-## Source Control for your database
+# EVALUACION SEMANA II
+## PATRONES DE DISEÑO
 
-Es una libreria opensource para el manejo y ejecución de cambios en base de datos.
+### PROBLEMATICA: 
+### Sistemas de Streaming (Spotify, Apple Music, Amazon Music, Youtube, Etc) buscan comprar una cancion, dependiendo si esta ya pagó o aun no. El sistema manejador de las canciones permite su descarga o no dependiendo de ese estado.
+### Determina el Patron de diseño que sea el adecuado para implementarse en el programa y ¿Por qué? 
 
-## Descripción
-Con liquibase podrás llevar el control de versiones de cualquier tipo de base de datos relaciónal; podras llevar una correcta administración de base de datos con tus clientes; sabrás en qué version se encuentra cada ambiente y podrás fácilmente hacer refactoring a tus modelos.
 
-Serás capaz de construir un esquema en cualquier base de datos con un solo desarrollo así como integrar la administración de sus bases de datos a la herramienta fácilmente.
 
-## Documentación
 
-Dentro de la siguiente ruta, denetro de este repositorio, podrás encontrar la documentación
-[Documentacion Liquibase](https://github.com/IngJavierR/liquibase/blob/master/documentacion)
+### El patron de diseño elegido es "OBSERVER", esto debido a que permite la implementacion de una clase observable (Clase que determina si existe un pago o no) y los observadores (Sistemas de Streaming).
+### Para su implementación se penso en la independencia de los sistemas de Streaming y el echo de que dependen de un estado unico (existencia de pago) para la adquisición de la cancion. A si mismo se determino que es el patron de diseño adecuado porque la clase observable emite una alerta (Metodo de notificacion) a los sistemas de Streaming una vez que se haya efectuado el cambio de estado en la existencia de pago.
 
-Mas detalles en: 
-[Pagina oficial liquibase](http://www.liquibase.org/)
 
-## Comandos que se pueden ejecutar para distintos propositos:
-
-### Generar un changelog desde una base de datos existente
-
-    liquibase --changeLogFile="changesets/db.changelog-#.#.#.#.xml" generateChangeLog
-
-### Update
-
-    liquibase --changeLogFile="changesets/db.changelog-master.xml" update
-
-### Rollback a un changeset anterior
-
-    liquibase --changeLogFile="changesets/db.changelog-master.xml" rollbackCount 1
-
-### Generar un changelog de diferencias
-
-    liquibase --changeLogFile="changesets/db.changelog-#.#.#.#.xml" diffChangeLog
