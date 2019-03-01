@@ -18,4 +18,9 @@
 ### La disquera puede añadir o eliminar observadores (Medios de Streaming), mismos que estan al pendiente de que el estado de la cancion cambie para ejecutar sus metodos pertinentes, dependiendo para que fueron pre programados.
 
 
+### Para la ejecucion del programa se sugiere la instrucción Update
+
+    liquibase --changeLogFile="changesets/db.changelog-master.xml" update
+
+
 
